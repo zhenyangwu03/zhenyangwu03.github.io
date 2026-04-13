@@ -13,6 +13,8 @@
       --text:#111;
       --muted:#666;
       --rule: rgba(0,0,0,0.10);
+      --left-col: 220px;   /* big Bio column */
+      --label-col: 140px;  /* table label column */
     }
 
     *{ box-sizing:border-box; }
@@ -21,22 +23,22 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       font-weight:200;
       letter-spacing:0.01em;
-      line-height:1.35;
+      line-height:1.55;
       font-synthesis:none;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     a{ color:inherit; text-decoration:none; }
 
+    /* responsive padding following screen size */
     .wrap{
       width:100%;
       padding: clamp(24px, 4vw, 64px) clamp(18px, 5vw, 96px) clamp(56px, 6vw, 90px);
     }
 
+    /* fixed corners */
     .fixed-tl{
       position:fixed;
       top: clamp(12px, 2vw, 28px);
@@ -63,80 +65,88 @@
       white-space:nowrap;
     }
 
-    .hero{
-      padding: 52px 0 8px;
-      max-width: 980px;
-    }
-
-    .bio-grid{
+    /* top layout: left big title + right text */
+    .top{
+      margin-top: 52px;
       display:grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 56px;
+      grid-template-columns: var(--left-col) 1fr;
+      gap: 44px;
       align-items:start;
-      max-width: 980px;
+      max-width: 1100px;
     }
 
     h1{
       margin:0;
-      font-size: clamp(1.65rem, 3.2vw, 3.1rem);
-      letter-spacing:-0.04em;
-      line-height:0.98;
-      font-weight:200;
+      font-size: clamp(2.1rem, 5vw, 3.1rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 200;
     }
 
-    .body-copy{
-      max-width: 70ch;
-      font-size:0.94rem;
-      color:#222;
+    .bio-text{
+      max-width: 520px; /* matches screenshot: narrow text block */
+      color: var(--text);
+      font-size: 0.92rem;
     }
 
-    .body-copy p{
-      margin:0 0 2.2rem 0;
+    .bio-text p{
+      margin: 0 0 18px 0;
+      color: var(--muted);
     }
+    .bio-text p:last-child{ margin-bottom: 0; }
 
-    .meta{
-      max-width:70ch;
-      margin-top: 12px;
+    /* table section */
+    .table{
+      margin-top: 26px;
+      max-width: 760px;   /* like screenshot table width */
+      margin-left: calc(var(--left-col) + 44px); /* align under right column text */
       border-top: 1px solid var(--rule);
-      padding-top: 12px;
     }
 
     .row{
       display:grid;
-      grid-template-columns: 110px 1fr;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      grid-template-columns: var(--label-col) 1fr;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.85rem;
     }
 
-    .row:last-child{ border-bottom:0; }
-
     .k{
-      color: var(--text);
-      letter-spacing: 0.10em;
-      font-size: 0.78rem;
+      color: var(--muted);
       white-space: nowrap;
+      letter-spacing: 0.06em;
     }
 
     .v{
       color: var(--muted);
-      min-width:0;
-      font-size:0.94rem;
+      min-width: 0;
     }
 
-    .v div + div{ margin-top: 4px; }
+    .v .line{
+      margin: 0;
+      padding: 0;
+    }
+    .v .line + .line{ margin-top: 6px; }
 
-    @media (max-width: 820px){
-      .bio-grid{
+    @media (max-width: 900px){
+      :root{ --left-col: 180px; }
+      .top{ gap: 28px; }
+      .table{ margin-left: calc(var(--left-col) + 28px); }
+    }
+
+    @media (max-width: 640px){
+      .top{
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 18px;
       }
-    }
-
-    @media (max-width: 560px){
+      .table{
+        margin-left: 0;
+        max-width: 100%;
+      }
       .row{
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 8px;
       }
       .fixed-br{ text-align:left; }
     }
@@ -148,50 +158,42 @@
   <div class="fixed-br">© 2026 Zhenyang Wu</div>
 
   <div class="wrap">
-    <section class="hero">
-      <div class="bio-grid">
-        <div>
-          <h1>Bio</h1>
-        </div>
+    <section class="top">
+      <h1>Bio</h1>
 
-        <div>
-          <div class="body-copy">
-            <p>Zhenyang Wu is a visual artist based between New York and Shanghai, working across video and photography.</p>
+      <div class="bio-text" aria-label="Bio text">
+        <p>Zhenyang Wu is a visual artist based between New York and Shanghai, working across video and photography.</p>
+        <p>His practice explores surveillance, memory, displacement, and bureaucratic language through layered imagery, abstraction, and visual metaphor.</p>
+        <p>Drawing from archival materials, found footage, and quotidian gestures, he examines foreignness, repetition, loss, and digital entropy across personal and institutional spaces.</p>
+      </div>
+    </section>
 
-            <p>His practice explores surveillance, memory, displacement, and bureaucratic language through layered imagery, abstraction, and visual metaphor.</p>
+    <section class="table" aria-label="Details">
+      <div class="row">
+        <div class="k">Base</div>
+        <div class="v">New York / Shanghai</div>
+      </div>
 
-            <p>Drawing from archival materials, found footage, and quotidian gestures, he examines foreignness, repetition, loss, and digital entropy across personal and institutional spaces.</p>
-          </div>
+      <div class="row">
+        <div class="k">Education</div>
+        <div class="v">Parsons School of Design, BFA Photography, 2026</div>
+      </div>
 
-          <div class="meta">
-            <div class="row">
-              <div class="k">Base</div>
-              <div class="v">New York / Shanghai</div>
-            </div>
+      <div class="row">
+        <div class="k">Next</div>
+        <div class="v">NYU Steinhardt, M.A. in Visual Arts Administration, 2026–2028</div>
+      </div>
 
-            <div class="row">
-              <div class="k">Education</div>
-              <div class="v">Parsons School of Design, BFA Photography, 2026</div>
-            </div>
+      <div class="row">
+        <div class="k">Current</div>
+        <div class="v">BFA Thesis Show, May 2026</div>
+      </div>
 
-            <div class="row">
-              <div class="k">Next</div>
-              <div class="v">NYU Steinhardt, M.A. in Visual Arts Administration, 2026–2028</div>
-            </div>
-
-            <div class="row">
-              <div class="k">Current</div>
-              <div class="v">BFA Thesis Show, May 2026</div>
-            </div>
-
-            <div class="row">
-              <div class="k">Experience</div>
-              <div class="v">
-                <div>Shanghai Museum, Photography Intern</div>
-                <div>The Paper, Digital Media Intern</div>
-              </div>
-            </div>
-          </div>
+      <div class="row">
+        <div class="k">Experience</div>
+        <div class="v">
+          <div class="line">Shanghai Museum, Photography Intern</div>
+          <div class="line">The Paper, Digital Media Intern</div>
         </div>
       </div>
     </section>
