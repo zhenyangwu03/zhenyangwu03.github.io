@@ -44,10 +44,28 @@
       padding: clamp(24px, 4vw, 64px) clamp(18px, 5vw, 96px) clamp(56px, 6vw, 90px);
     }
 
+    /* Fixed corner elements */
+    .fixed-tl {
+      position: fixed;
+      top: clamp(12px, 2vw, 28px);
+      left: clamp(12px, 2vw, 28px);
+      z-index: 50;
+      pointer-events: none; /* purely informational */
+    }
+
+    .fixed-br {
+      position: fixed;
+      right: clamp(12px, 2vw, 28px);
+      bottom: clamp(12px, 2vw, 28px);
+      z-index: 50;
+      pointer-events: none;
+      text-align: right;
+    }
+
     /* Two-column system: left content + fixed right column */
     header {
       display: block;
-      width: 100%;
+      width: auto;
     }
 
         .note {
@@ -126,12 +144,10 @@
     }
 
     footer {
-      margin-top: 44px;
+      margin: 0;
       color: var(--muted);
       font-size: 0.85rem;
-      display: block;
-      width: 100%;
-      text-align: right;
+      width: auto;
     }
 
     
@@ -148,9 +164,9 @@
     }
 
     @media (max-width: 560px) {
-      header, .item {
-        grid-template-columns: 1fr;
-      }
+      :root { --col: 92px; }
+      .note { white-space: normal; }
+    }
       .note, .num {
         text-align: left;
         white-space: normal;
@@ -161,7 +177,7 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <header class="fixed-tl">
       <div class="note">A trace remains</div>
     </header>
 
@@ -193,7 +209,7 @@
       </a>
     </nav>
 
-    <footer>
+    <footer class="fixed-br">
       <div>© 2026 Zhenyang Wu</div>
     </footer>
   </div>
