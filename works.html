@@ -204,6 +204,12 @@
       font-weight: 300;
     }
 
+    /* NEW: paragraph handling inside modules */
+    .v p{
+      margin: 0;
+      line-height: 1.7;
+    }
+
     .ph-box{
       width:100%;
       height: 160px;
@@ -224,7 +230,7 @@
       font-size: 0.9rem;
     }
 
-    /* === NEW: horizontal filmstrip for 9 vertical images === */
+    /* horizontal filmstrip for 9 vertical images */
     .strip{
       display:flex;
       gap: 10px;
@@ -234,7 +240,7 @@
       -webkit-overflow-scrolling: touch;
     }
     .strip img{
-      height: 220px;          /* tuned for vertical images */
+      height: 220px;
       width: auto;
       flex: 0 0 auto;
       border: 1px solid rgba(0,0,0,0.10);
@@ -316,7 +322,17 @@
 
             <div class="module">
               <div class="k">Text</div>
-              <div class="v">Short excerpt / statement placeholder.</div>
+              <div class="v">
+                <p>
+                  What Remains Said / What Remains Seen is a video installation composed of two interdependent parts: image and sound.
+                  The visual component assembles found footage from archival documents, immigration records, news, and published research,
+                  forming a fragmented field of institutional evidence. The audio component presents a fictional narrative based on the true
+                  experience of an international student who was detained and deported, interwoven with contemporaneous news accounts.
+                  Through the tension between what is documented and what is voiced, the work addresses vulnerability and lasting trauma,
+                  examining how immigrant lives are rendered legible, erased, or displaced within bureaucratic and media systems during moments
+                  of political and social uncertainty.
+                </p>
+              </div>
             </div>
 
             <div class="module">
