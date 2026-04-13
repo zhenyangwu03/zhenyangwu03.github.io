@@ -44,13 +44,14 @@
       top: clamp(12px, 2vw, 28px);
       left: clamp(12px, 2vw, 28px);
       z-index:50;
-      pointer-events:none;
+      pointer-events:auto; /* clickable */
       font-size:0.78rem;
       color:var(--muted);
       letter-spacing:0.10em;
       font-style: italic;
       white-space:nowrap;
     }
+    .fixed-tl:hover{ color: var(--text); }
 
     .fixed-br{
       position:fixed;
@@ -84,17 +85,6 @@
       max-width: 70ch;
       font-size:1rem;
     }
-
-    /* Back link: no underline, no box */
-    .back{
-      display:inline-block;
-      margin-top: 14px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-decoration: none;
-    }
-    .back:hover{ color: var(--text); }
 
     /* directory list */
     .nav{
@@ -243,14 +233,13 @@
 </head>
 
 <body>
-  <div class="fixed-tl">A trace remains</div>
+  <a class="fixed-tl" href="index.html" aria-label="Back to index">Back to index</a>
   <div class="fixed-br">© 2026 Zhenyang Wu</div>
 
   <div class="wrap">
     <section class="hero">
       <h1>Works</h1>
       <p class="subtitle"><em>书不尽言，言不尽意。</em></p>
-      <a class="back" href="index.html">Back to index</a>
     </section>
 
     <div class="nav" aria-label="Works list">
