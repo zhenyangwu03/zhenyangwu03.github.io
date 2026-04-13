@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Works — Zhenyang Wu</title>
+
+  <style>
+    /* Self-hosted font (recommended). Make sure this file exists: assets/fonts/ibm-plex-mono-latin-200-normal.woff2 */
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("assets/fonts/ibm-plex-mono-latin-200-normal.woff2") format("woff2");
+      font-weight: 200;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg:#fff;
+      --text:#111;
+      --muted:#666;
+      --col:140px; /* right-side column width */
+      --rule: rgba(0,0,0,0.10);
+    }
+
+    *{ box-sizing:border-box; }
+
+    html, body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-weight:200;
+      letter-spacing:0.01em;
+      line-height:1.35;
+      font-synthesis:none;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    /* responsive padding following screen size */
+    .wrap{
+      width:100%;
+      padding: clamp(24px, 4vw, 64px) clamp(18px, 5vw, 96px) clamp(56px, 6vw, 90px);
+    }
+
+    /* fixed corners */
+    .fixed-tl{
+      position:fixed;
+      top: clamp(12px, 2vw, 28px);
+      left: clamp(12px, 2vw, 28px);
+      z-index:50;
+      pointer-events:none;
+      font-size:0.78rem;
+      color:var(--muted);
+      letter-spacing:0.10em;
+      font-style: italic;
+      white-space:nowrap;
+    }
+
+    .fixed-br{
+      position:fixed;
+      right: clamp(12px, 2vw, 28px);
+      bottom: clamp(12px, 2vw, 28px);
+      z-index:50;
+      pointer-events:none;
+      text-align:right;
+      color:var(--muted);
+      font-size:0.85rem;
+      white-space:nowrap;
+    }
+
+    /* page header */
+    .hero{
+      padding: 52px 0 8px;
+      max-width: 980px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(1.65rem, 3.2vw, 3.1rem);
+      letter-spacing:-0.04em;
+      line-height:0.98;
+      font-weight:200;
+    }
+
+    .subtitle{
+      margin:14px 0 0;
+      color:var(--muted);
+      max-width: 70ch;
+      font-size:1rem;
+    }
+
+    .back{
+      display:inline-block;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* directory list */
+    .nav{
+      margin-top: 18px;
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      max-width: 1180px;
+    }
+
+    .item{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr var(--col);
+      gap: 16px;
+      align-items: baseline;
+      padding: 6px 0;
+    }
+
+    /* clickable title as a button */
+    .toggle{
+      appearance:none;
+      border:0;
+      background:transparent;
+      padding:0;
+      margin:0;
+      text-align:left;
+      cursor:pointer;
+      width:100%;
+      color:inherit;
+    }
+
+    .title{
+      position:relative;
+      padding-left:14px;
+      font-size:1.00rem;
+      letter-spacing:0.02em;
+      font-weight:200;
+      display:inline-block;
+    }
+
+    .title::before{
+      content:"-";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--muted);
+    }
+
+    .num{
+      font-size:0.76rem;
+      color:var(--muted);
+      letter-spacing:0.16em;
+      text-align:right;
+      white-space:nowrap;
+      font-weight:200;
+    }
+
+    .toggle:hover .title{
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    /* accordion panel */
+    .panel{
+      grid-column: 1 / -1;
+      margin-left: 14px; /* aligns with title text (after '-') */
+      border-top: 1px solid var(--rule);
+      padding-top: 12px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 260ms ease;
+    }
+
+    .panel-inner{
+      padding-bottom: 12px;
+      display:grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .item.open .panel{
+      /* JS will set a specific max-height inline for smooth animation; this is a fallback */
+      max-height: 900px;
+    }
+
+    .module{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .module:last-child{ border-bottom: 0; }
+
+    .k{
+      color: var(--text);
+      letter-spacing: 0.10em;
+      font-size: 0.78rem;
+      text-transform: none;
+      white-space: nowrap;
+    }
+
+    .v{
+      min-width:0;
+    }
+
+    .placeholder{
+      color: var(--muted);
+    }
+
+    .ph-box{
+      width:100%;
+      height: 160px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.03) 0px,
+        rgba(0,0,0,0.03) 10px,
+        rgba(0,0,0,0.00) 10px,
+        rgba(0,0,0,0.00) 20px
+      );
+    }
+
+    .ph-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+    }
+
+    .ph-img{
+      aspect-ratio: 4 / 5;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.03);
+    }
+
+    @media (max-width: 720px){
+      :root{ --col: 92px; }
+      .ph-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 560px){
+      .item{ grid-template-columns: 1fr; }
+      .num{ text-align:left; }
+      .panel{ margin-left: 0; }
+      .module{ grid-template-columns: 1fr; }
+      .fixed-br{ text-align:left; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fixed-tl">A trace remains</div>
+  <div class="fixed-br">© 2026 Zhenyang Wu</div>
+
+  <div class="wrap">
+    <section class="hero">
+      <h1>Works</h1>
+      <p class="subtitle">
+        Visual practice.<br>
+        <em>书不尽言，言不尽意。</em><br>
+        <em>Words cannot fully convey meaning.</em>
+      </p>
+      <a class="back" href="index.html">Back to index</a>
+    </section>
+
+    <div class="nav" aria-label="Works list">
+      <!-- 01 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">What Remains Said / What Remains Seen</span>
+        </button>
+        <div class="num">01</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="module">
+              <div class="k">Video</div>
+              <div class="v">
+                <div class="ph-box" aria-label="video placeholder"></div>
+                <div class="placeholder">Embed placeholder (Vimeo/YouTube).</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v">
+                <div class="ph-grid" aria-label="image placeholders">
+                  <div class="ph-img"></div><div class="ph-img"></div><div class="ph-img"></div>
+                </div>
+                <div class="placeholder">Stills / installation views (placeholder).</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Audio</div>
+              <div class="v">
+                <div class="placeholder">Audio player placeholder.</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <div class="placeholder">Short excerpt / statement placeholder.</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Zine</div>
+              <div class="v">
+                <div class="placeholder">PDF / preview placeholder.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Digital Decay</span>
+        </button>
+        <div class="num">02</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="module"><div class="k">Video</div><div class="v"><div class="ph-box"></div><div class="placeholder">Placeholder.</div></div></div>
+            <div class="module"><div class="k">Images</div><div class="v"><div class="ph-grid"><div class="ph-img"></div><div class="ph-img"></div><div class="ph-img"></div></div><div class="placeholder">Placeholder.</div></div></div>
+            <div class="module"><div class="k">Text</div><div class="v"><div class="placeholder">Placeholder.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Cereal</span>
+        </button>
+        <div class="num">03</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="module"><div class="k">Images</div><div class="v"><div class="ph-grid"><div class="ph-img"></div><div class="ph-img"></div><div class="ph-img"></div></div><div class="placeholder">Placeholder.</div></div></div>
+            <div class="module"><div class="k">Text</div><div class="v"><div class="placeholder">Placeholder.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">The Duck</span>
+        </button>
+        <div class="num">04</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="module"><div class="k">Images</div><div class="v"><div class="ph-grid"><div class="ph-img"></div><div class="ph-img"></div><div class="ph-img"></div></div><div class="placeholder">Placeholder.</div></div></div>
+            <div class="module"><div class="k">Text</div><div class="v"><div class="placeholder">Placeholder.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Studio Work</span>
+        </button>
+        <div class="num">05</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v">
+                <div class="ph-grid"><div class="ph-img"></div><div class="ph-img"></div><div class="ph-img"></div></div>
+                <div class="placeholder">Lookbook / product photography selection (placeholder).</div>
+              </div>
+            </div>
+            <div class="module"><div class="k">Text</div><div class="v"><div class="placeholder">Placeholder.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Accordion behavior with smooth height animation
+    const items = document.querySelectorAll('.item');
+
+    function closeItem(item) {
+      const btn = item.querySelector('.toggle');
+      const panel = item.querySelector('.panel');
+      item.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.style.maxHeight = '0px';
+    }
+
+    function openItem(item) {
+      const btn = item.querySelector('.toggle');
+      const panel = item.querySelector('.panel');
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+      // set maxHeight to scrollHeight for smooth transition
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+
+    items.forEach(item => {
+      const btn = item.querySelector('.toggle');
+      const panel = item.querySelector('.panel');
+
+      // init
+      panel.style.maxHeight = '0px';
+
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // optional: close others for a cleaner "single-open" directory feel
+        items.forEach(i => { if (i !== item) closeItem(i); });
+
+        if (isOpen) closeItem(item);
+        else openItem(item);
+      });
+    });
+
+    // Recompute open panel height on resize (so it doesn't clip)
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.item.open .panel').forEach(panel => {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
