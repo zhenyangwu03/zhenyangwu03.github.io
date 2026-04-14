@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Works — Zhenyang Wu</title>
 
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,200;0,300;0,400;1,200&display=swap');
 
@@ -15,10 +17,10 @@
       --read:#4d4d4d;
       --rule: rgba(0,0,0,0.10);
 
-      --left-col: 220px;       /* big title column (like Bio) */
-      --gap: 44px;             /* gap between columns */
-      --num-col: 140px;        /* right-side number column */
-      --label-col: 140px;      /* module label column inside panel */
+      --left-col: 220px;
+      --gap: 44px;
+      --num-col: 140px;
+      --label-col: 140px;
     }
 
     *{ box-sizing:border-box; }
@@ -41,7 +43,6 @@
       padding: clamp(24px, 4vw, 64px) clamp(18px, 5vw, 96px) clamp(56px, 6vw, 90px);
     }
 
-    /* fixed corners */
     .fixed-tl{
       position:fixed;
       top: clamp(12px, 2vw, 28px);
@@ -68,7 +69,6 @@
       white-space:nowrap;
     }
 
-    /* header: left title / right subtitle */
     .top{
       margin-top: 52px;
       display:grid;
@@ -96,7 +96,6 @@
     }
     .subtitle em{ font-style: italic; font-weight: 200; color: var(--muted); }
 
-    /* Works list aligned under right column */
     .list{
       margin-top: 26px;
       max-width: 980px;
@@ -161,7 +160,6 @@
       text-underline-offset: 4px;
     }
 
-    /* accordion panel */
     .panel{
       grid-column: 1 / -1;
       margin-left: 14px;
@@ -180,7 +178,6 @@
       font-size: 0.92rem;
     }
 
-    /* modules: label left / content right */
     .module{
       display:grid;
       grid-template-columns: var(--label-col) 1fr;
@@ -204,7 +201,6 @@
       font-weight: 300;
     }
 
-    /* NEW: paragraph handling inside modules */
     .v p{
       margin: 0;
       line-height: 1.7;
@@ -230,7 +226,6 @@
       font-size: 0.9rem;
     }
 
-    /* horizontal filmstrip for 9 vertical images */
     .strip{
       display:flex;
       gap: 10px;
@@ -248,6 +243,27 @@
       scroll-snap-align: start;
     }
 
+    .pdf{
+      width: 100%;
+      height: 520px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.03);
+    }
+    .pdf iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .pdf-links{
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 200;
+    }
+    .pdf-link{ color: inherit; text-decoration: none; }
+    .pdf-link:hover{ color: var(--text); }
+    .sep{ padding: 0 6px; }
+
     @media (max-width: 900px){
       :root{ --left-col: 180px; --gap: 28px; }
       .list{ margin-left: calc(var(--left-col) + var(--gap)); }
@@ -256,6 +272,7 @@
     @media (max-width: 720px){
       :root{ --num-col: 92px; --label-col: 120px; }
       .strip img{ height: 200px; }
+      .pdf{ height: 440px; }
     }
 
     @media (max-width: 640px){
@@ -266,6 +283,7 @@
       .panel{ margin-left: 0; }
       .module{ grid-template-columns: 1fr; }
       .fixed-br{ text-align:left; }
+      .pdf{ height: 380px; }
     }
   </style>
 </head>
@@ -281,6 +299,7 @@
     </section>
 
     <div class="list" aria-label="Works list">
+
       <!-- 01 -->
       <div class="item">
         <button class="toggle" type="button" aria-expanded="false">
@@ -290,11 +309,12 @@
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
+
             <div class="module">
               <div class="k">Video</div>
               <div class="v">
                 <div class="ph-box" aria-label="video placeholder"></div>
-                <div class="hint">Embed placeholder (Vimeo/YouTube).</div>
+                <div class="hint">Video placeholder.</div>
               </div>
             </div>
 
@@ -302,22 +322,17 @@
               <div class="k">Images</div>
               <div class="v">
                 <div class="strip" aria-label="image strip">
-                  <img src="assets/works/wr/wr-1.jpg" alt="What Remains — image 01">
-                  <img src="assets/works/wr/wr-2.jpg" alt="What Remains — image 02">
-                  <img src="assets/works/wr/wr-3.jpg" alt="What Remains — image 03">
-                  <img src="assets/works/wr/wr-4.jpg" alt="What Remains — image 04">
-                  <img src="assets/works/wr/wr-5.jpg" alt="What Remains — image 05">
-                  <img src="assets/works/wr/wr-6.jpg" alt="What Remains — image 06">
-                  <img src="assets/works/wr/wr-7.jpg" alt="What Remains — image 07">
-                  <img src="assets/works/wr/wr-8.jpg" alt="What Remains — image 08">
-                  <img src="assets/works/wr/wr-9.jpg" alt="What Remains — image 09">
+                  <img src="assets/works/wr-1.jpg" alt="What Remains — image 01">
+                  <img src="assets/works/wr-2.jpg" alt="What Remains — image 02">
+                  <img src="assets/works/wr-3.jpg" alt="What Remains — image 03">
+                  <img src="assets/works/wr-4.jpg" alt="What Remains — image 04">
+                  <img src="assets/works/wr-5.jpg" alt="What Remains — image 05">
+                  <img src="assets/works/wr-6.jpg" alt="What Remains — image 06">
+                  <img src="assets/works/wr-7.jpg" alt="What Remains — image 07">
+                  <img src="assets/works/wr-8.jpg" alt="What Remains — image 08">
+                  <img src="assets/works/wr-9.jpg" alt="What Remains — image 09">
                 </div>
               </div>
-            </div>
-
-            <div class="module">
-              <div class="k">Audio</div>
-              <div class="v">Audio player placeholder.</div>
             </div>
 
             <div class="module">
@@ -337,8 +352,22 @@
 
             <div class="module">
               <div class="k">Zine</div>
-              <div class="v">PDF / preview placeholder.</div>
+              <div class="v">
+                <div class="pdf">
+                  <iframe
+                    src="assets/works/zine.pdf#view=FitH"
+                    title="Zine PDF preview"
+                    loading="lazy"></iframe>
+                </div>
+
+                <div class="pdf-links">
+                  <a class="pdf-link" href="assets/works/zine.pdf" target="_blank" rel="noopener">Open</a>
+                  <span class="sep">/</span>
+                  <a class="pdf-link" href="assets/works/zine.pdf" download>Download</a>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -352,9 +381,32 @@
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
-            <div class="module"><div class="k">Video</div><div class="v"><div class="ph-box"></div><div class="hint">Placeholder.</div></div></div>
-            <div class="module"><div class="k">Images</div><div class="v"><div class="hint">Placeholder.</div></div></div>
-            <div class="module"><div class="k">Text</div><div class="v">Placeholder.</div></div>
+
+            <div class="module">
+              <div class="k">Video</div>
+              <div class="v">
+                <div class="ph-box" aria-label="video placeholder"></div>
+                <div class="hint">Video placeholder.</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v"><div class="hint">Placeholder.</div></div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>
+                  Digital Decay explores digital information decay through three linked gestures. I translate selected art films about data loss into low-fidelity videos rendered only as alphanumeric characters. A soundscape begins as code read by text-to-speech, then collapses into abstract 8-bit noise. The generative script appears again as a printed object, intentionally unreadable.
+                </p>
+                <p style="margin-top:10px;">
+                  The work treats digital preservation as provisional: data degrades, and meaning erodes, regardless of how permanent it appears.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -368,8 +420,21 @@
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
-            <div class="module"><div class="k">Images</div><div class="v"><div class="hint">Placeholder.</div></div></div>
-            <div class="module"><div class="k">Text</div><div class="v">Placeholder.</div></div>
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v"><div class="hint">Placeholder.</div></div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>
+                  Cereal documents a week-long ritual of preparing breakfast cereal with minimal variation. By recording this methodical daily act, the work isolates routine and lets its quiet absurdity surface. It asks what meaning we assign to repetition, and how habit shapes our sense of time in modern life.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -383,8 +448,21 @@
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
-            <div class="module"><div class="k">Images</div><div class="v"><div class="hint">Placeholder.</div></div></div>
-            <div class="module"><div class="k">Text</div><div class="v">Placeholder.</div></div>
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v"><div class="hint">Placeholder.</div></div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>
+                  The Duck captures a liminal space between belonging and alienation: a solitary rubber duck adrift before Manhattan’s skyline. The panorama shifts from day to night, but the duck remains suspended, small against the city yet visually distinct. Its out-of-place innocence turns the cityscape into a metaphor for foreignness and cultural displacement.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -398,16 +476,138 @@
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
-            <div class="module"><div class="k">Images</div><div class="v"><div class="hint">Lookbook / product photography selection (placeholder).</div></div></div>
-            <div class="module"><div class="k">Text</div><div class="v">Placeholder.</div></div>
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v">
+                <div class="strip" aria-label="Studio Work image strip">
+                  <img src="assets/works/sw-1.jpg" alt="Studio Work — image 01">
+                  <img src="assets/works/sw-2.jpg" alt="Studio Work — image 02">
+                  <img src="assets/works/sw-3.jpg" alt="Studio Work — image 03">
+                  <img src="assets/works/sw-4.jpg" alt="Studio Work — image 04">
+                  <img src="assets/works/sw-5.jpg" alt="Studio Work — image 05">
+                  <img src="assets/works/sw-6.jpg" alt="Studio Work — image 06">
+                </div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>Studio images from commissioned and self-initiated shoots.</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- 06 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Before the fire, After the flame</span>
+        </button>
+        <div class="num">06</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+
+            <div class="module">
+              <div class="k">Video</div>
+              <div class="v">
+                <div class="ph-box" aria-label="video placeholder"></div>
+                <div class="hint">Video placeholder.</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>
+                  Before the fire, After the flame begins with an apartment fire that destroyed more than half of my film archive. After a year of distance, I return to what remains and treat the archive as material again. The installation juxtaposes intact and damaged images through parallel projections to examine the fragility of physical media and the limits of preservation.
+                </p>
+                <p style="margin-top:10px;">
+                  The charred remnants introduce a different kind of texture and form, and the work asks how catastrophe can become a catalyst for reconsidering what an archive is, and what it means to keep what survives.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Trace</span>
+        </button>
+        <div class="num">07</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v">
+                <div class="strip" aria-label="Trace image strip">
+                  <img src="assets/works/trace-install-1.jpg" alt="Trace — installation view 01">
+                  <img src="assets/works/trace-install-2.jpg" alt="Trace — installation view 02">
+                  <img src="assets/works/trace-scan-1.jpg" alt="Trace — scan 01">
+                  <img src="assets/works/trace-scan-2.jpg" alt="Trace — scan 02">
+                  <img src="assets/works/trace-scan-3.jpg" alt="Trace — scan 03">
+                </div>
+                <div class="hint">2 installation views / 3 scans.</div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>
+                  Trace is composed of two interdependent parts: photographs of City Hall Park’s trees and a bark artifact inscribed with protest slogans once voiced on the same ground. The work treats the tree as both witness and surface, where language can be carried, scarred, and re-read.
+                </p>
+                <p style="margin-top:10px;">
+                  By rewriting slogans onto bark and presenting them beside the images, I trace how collective speech persists even when names disappear from official records. The piece asks what remains in public space after events pass, and how memory survives as material texture rather than clear narrative.
+                </p>
+
+                <p style="margin-top:16px; color: var(--muted); font-weight:200; letter-spacing:0.10em; font-size:0.78rem;">
+                  Writing
+                </p>
+
+                <p>
+                  City Hall Park feels like a quiet public space now, trees, benches, commuters crossing diagonally to save time, but the ground feels heavy, as if memory sits just beneath the soil. The first line that stays with me is the idea that the land began as a commons, a shared resource rather than a governed territory. There’s something tender in that, the idea that the park once belonged to everyone, without permitting, without fencing or oversight. A public before policy.
+                </p>
+
+                <p style="margin-top:10px;">
+                  But the narrative shifts quickly: punishment, execution, military display. The park becomes stage, not sanctuary. I think about how public violence makes power visible. How a state demonstrates authority by making the body a message. How communal land becomes a theater of obedience.
+                </p>
+
+                <p style="margin-top:10px;">
+                  Before City Hall, there were prisons, almshouse, workhouse, debtor’s jail. The poor, the indebted, the unwanted: they lived, worked, suffered here. And yet their names are mostly missing. The archive is full of architectural plans, records of construction, government meetings, but the people who slept here, starved here, survived or died here, exist mostly as material traces. Objects found underground speak more loudly than written documents: ceramics, bones, nails, tobacco pipes. Trash becomes biography.
+                </p>
+
+                <p style="margin-top:10px;">
+                  It feels significant that protest happens here before government does: the first political assembly against the Stamp Act. As if the land itself was predisposed to dissent. A commons remembers collective voice, even when the state tries to formalize it into marble and law.
+                </p>
+
+                <p style="margin-top:10px;">
+                  The transformation into City Hall Park marks a shift, from messy, unpredictable public use to disciplined civic environment. The park becomes curated, controlled, aesthetic. Paths are drawn where wandering used to be. Law replaces grazing. A fence is built. But even now, the report says, earlier landscapes endure beneath the surface. The buried layers become a reminder: history doesn’t disappear; it settles.
+                </p>
+
+                <p style="margin-top:10px;">
+                  What moves me most is the sentence that describes the site as a palimpsest. A document rewritten so many times that past text still bleeds through. A city is never singular; it is accumulation. I keep returning to one idea: public spaces always contain ghosts, not of the dead, but of the unrecorded. City Hall Park is not peaceful. It is layered. It is contested. It is memory disguised as grass.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script>
-    // Accordion behavior with smooth height animation (single-open)
     const items = document.querySelectorAll('.item');
 
     function closeItem(item) {
