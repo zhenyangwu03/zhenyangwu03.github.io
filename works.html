@@ -206,24 +206,24 @@
       line-height: 1.7;
     }
 
-    .ph-box{
-      width:100%;
-      height: 160px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: repeating-linear-gradient(
-        90deg,
-        rgba(0,0,0,0.03) 0px,
-        rgba(0,0,0,0.03) 10px,
-        rgba(0,0,0,0.00) 10px,
-        rgba(0,0,0,0.00) 20px
-      );
-    }
-
     .hint{
       margin-top: 8px;
       color: var(--muted);
       font-weight: 200;
       font-size: 0.9rem;
+    }
+
+    /* Video embed */
+    .video{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.03);
+    }
+    .video iframe{
+      width:100%;
+      height:100%;
+      border:0;
     }
 
     .strip{
@@ -243,6 +243,7 @@
       scroll-snap-align: start;
     }
 
+    /* PDF preview (no download links) */
     .pdf{
       width: 100%;
       height: 520px;
@@ -254,15 +255,6 @@
       height: 100%;
       border: 0;
     }
-    .pdf-links{
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: 200;
-    }
-    .pdf-link{ color: inherit; text-decoration: none; }
-    .pdf-link:hover{ color: var(--text); }
-    .sep{ padding: 0 6px; }
 
     @media (max-width: 900px){
       :root{ --left-col: 180px; --gap: 28px; }
@@ -313,8 +305,14 @@
             <div class="module">
               <div class="k">Video</div>
               <div class="v">
-                <div class="ph-box" aria-label="video placeholder"></div>
-                <div class="hint">Video placeholder.</div>
+                <div class="video">
+                  <iframe
+                    src="https://www.youtube.com/embed/_eYIttkGFms?rel=0&modestbranding=1"
+                    title="What Remains Said / What Remains Seen — video"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
               </div>
             </div>
 
@@ -350,21 +348,17 @@
               </div>
             </div>
 
+            <!-- Zine preview only (no Open/Download links) -->
             <div class="module">
               <div class="k">Zine</div>
               <div class="v">
                 <div class="pdf">
                   <iframe
-                    src="assets/works/zine.pdf#view=FitH"
-                    title="Zine PDF preview"
+                    src="assets/works/zine.pdf#view=FitH&toolbar=0&navpanes=0&scrollbar=0"
+                    title="Zine preview"
                     loading="lazy"></iframe>
                 </div>
-
-                <div class="pdf-links">
-                  <a class="pdf-link" href="assets/works/zine.pdf" target="_blank" rel="noopener">Open</a>
-                  <span class="sep">/</span>
-                  <a class="pdf-link" href="assets/works/zine.pdf" download>Download</a>
-                </div>
+                <div class="hint">Preview only.</div>
               </div>
             </div>
 
@@ -385,14 +379,15 @@
             <div class="module">
               <div class="k">Video</div>
               <div class="v">
-                <div class="ph-box" aria-label="video placeholder"></div>
-                <div class="hint">Video placeholder.</div>
+                <div class="video">
+                  <iframe
+                    src="https://www.youtube.com/embed/1Vz_8RkfCeU?rel=0&modestbranding=1"
+                    title="Digital Decay — video"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
               </div>
-            </div>
-
-            <div class="module">
-              <div class="k">Images</div>
-              <div class="v"><div class="hint">Placeholder.</div></div>
             </div>
 
             <div class="module">
@@ -422,8 +417,17 @@
           <div class="panel-inner">
 
             <div class="module">
-              <div class="k">Images</div>
-              <div class="v"><div class="hint">Placeholder.</div></div>
+              <div class="k">Video</div>
+              <div class="v">
+                <div class="video">
+                  <iframe
+                    src="https://www.youtube.com/embed/L-XGlCFIfcs?rel=0&modestbranding=1"
+                    title="Cereal — video"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              </div>
             </div>
 
             <div class="module">
@@ -451,7 +455,11 @@
 
             <div class="module">
               <div class="k">Images</div>
-              <div class="v"><div class="hint">Placeholder.</div></div>
+              <div class="v">
+                <div class="strip" aria-label="The Duck image strip">
+                  <img src="assets/works/duck-2.jpg" alt="The Duck — image 01">
+                </div>
+              </div>
             </div>
 
             <div class="module">
@@ -470,7 +478,7 @@
       <!-- 05 -->
       <div class="item">
         <button class="toggle" type="button" aria-expanded="false">
-          <span class="title">Studio Work</span>
+          <span class="title">Before the fire, After the flame</span>
         </button>
         <div class="num">05</div>
 
@@ -478,45 +486,16 @@
           <div class="panel-inner">
 
             <div class="module">
-              <div class="k">Images</div>
-              <div class="v">
-                <div class="strip" aria-label="Studio Work image strip">
-                  <img src="assets/works/sw-1.jpg" alt="Studio Work — image 01">
-                  <img src="assets/works/sw-2.jpg" alt="Studio Work — image 02">
-                  <img src="assets/works/sw-3.jpg" alt="Studio Work — image 03">
-                  <img src="assets/works/sw-4.jpg" alt="Studio Work — image 04">
-                  <img src="assets/works/sw-5.jpg" alt="Studio Work — image 05">
-                  <img src="assets/works/sw-6.jpg" alt="Studio Work — image 06">
-                </div>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="k">Text</div>
-              <div class="v">
-                <p>Studio images from commissioned and self-initiated shoots.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- 06 -->
-      <div class="item">
-        <button class="toggle" type="button" aria-expanded="false">
-          <span class="title">Before the fire, After the flame</span>
-        </button>
-        <div class="num">06</div>
-
-        <div class="panel" aria-hidden="true">
-          <div class="panel-inner">
-
-            <div class="module">
               <div class="k">Video</div>
               <div class="v">
-                <div class="ph-box" aria-label="video placeholder"></div>
-                <div class="hint">Video placeholder.</div>
+                <div class="video">
+                  <iframe
+                    src="https://www.youtube.com/embed/-jpfLKGHaIc?rel=0&modestbranding=1"
+                    title="Before the fire, After the flame — video"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
               </div>
             </div>
 
@@ -536,12 +515,12 @@
         </div>
       </div>
 
-      <!-- 07 -->
+      <!-- 06 -->
       <div class="item">
         <button class="toggle" type="button" aria-expanded="false">
           <span class="title">Trace</span>
         </button>
-        <div class="num">07</div>
+        <div class="num">06</div>
 
         <div class="panel" aria-hidden="true">
           <div class="panel-inner">
@@ -597,6 +576,41 @@
                 <p style="margin-top:10px;">
                   What moves me most is the sentence that describes the site as a palimpsest. A document rewritten so many times that past text still bleeds through. A city is never singular; it is accumulation. I keep returning to one idea: public spaces always contain ghosts, not of the dead, but of the unrecorded. City Hall Park is not peaceful. It is layered. It is contested. It is memory disguised as grass.
                 </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 (moved to last) -->
+      <div class="item">
+        <button class="toggle" type="button" aria-expanded="false">
+          <span class="title">Studio Work</span>
+        </button>
+        <div class="num">07</div>
+
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+
+            <div class="module">
+              <div class="k">Images</div>
+              <div class="v">
+                <div class="strip" aria-label="Studio Work image strip">
+                  <img src="assets/works/sw-1.jpg" alt="Studio Work — image 01">
+                  <img src="assets/works/sw-2.jpg" alt="Studio Work — image 02">
+                  <img src="assets/works/sw-3.jpg" alt="Studio Work — image 03">
+                  <img src="assets/works/sw-4.jpg" alt="Studio Work — image 04">
+                  <img src="assets/works/sw-5.jpg" alt="Studio Work — image 05">
+                  <img src="assets/works/sw-6.jpg" alt="Studio Work — image 06">
+                </div>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="k">Text</div>
+              <div class="v">
+                <p>Studio images from commissioned and self-initiated shoots.</p>
               </div>
             </div>
 
